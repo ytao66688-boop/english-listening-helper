@@ -19,7 +19,13 @@ jobs:
         channel: 'stable'
     
     - name: Get dependencies
-      run: flutter pub get
+      run: |
+        for i in 1 2 3; do
+          flutter pub get && break || sleep 15
+        done
+      env:
+        PUB_HOSTED_URL: https://pub.dev
+        FLUTTER_STORAGE_BASE_URL: https://storage.googleapis.com
     
     - name: Build APK
       run: flutter build apk --release
