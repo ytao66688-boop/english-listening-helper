@@ -71,7 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
           if (savedPath != null) {
             // 保存到数据库
             final id = DateTime.now().millisecondsSinceEpoch.toString();
-            await DatabaseService.instance.database.insert('audio_files', {
+            final db = await DatabaseService.instance.database;
+            await db.insert('audio_files', {
               'id': id,
               'fileName': fileName,
               'filePath': savedPath,
